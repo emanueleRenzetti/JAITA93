@@ -1,0 +1,1504 @@
+--------------------------------------- LEZIONE 04/09 ------------------------------------------
+
+Java nella sua sintassi trova il modo con i suoi principi di avvicinarsi alla oop.
+
+
+le classi wrapper sono delle classi collegate ai tipi primitivi corrispndenti. es. int - Integer
+Servono per esempio a mettere dei numeri dentro le colllezioni es. un arraylist di int non si può fare. allora è stata creata in java 5 la classe wrapper.
+Tutte hanno dei metodi statici per fare  delle operazini con quel tipo di nuemro. es. Double.parseDouble(String s) : gli passo una stringa ce me la trasforma in un double.
+Oggi possiamo usare i tipi primitivi dentro le colllezioni. 
+
+--------------
+
+LE CLASSI
+
+Sono due le entità con cui abbiamo a che fare. Proprietà e metodi. 
+i metodi vengonoeseguiti in una certa zona della macchina virtuale. 
+Le proprietà sono salvate in un altro posto perchè i metodi di solito mi servono a leggere i valori o le proprietà.
+Gli oggetti sono dotati di stato e comportamento ed anche identità, cioè un oggetto può essere simile ma distinto da un altro oggetto. 
+Le proprietà devono essere i un certo tipo. Troviamo anche i metodi nelle classi.
+
+Metodo costruttore. Con l'operatore new creiamo un oggetto di un certo tipo e lo creiamo in unceto modo. 
+Java ci da a disposizione il meccanismo di overload cioè possiamo avere diverse versioni di quel metodo nella stessa classe. Metodo con lo stesso nomoe ma diversi. Non possono essere completaente uguali.
+Questa regola vale anche per i costruttori, posso definire diversi costruttori. Avere diversi costruttori permette di creare oggtti di forme diverse.
+Il metodo permete di implementare il polimorfismo all'interno di java.
+POLIMORFISMO:... VEDI SOTTO
+
+
+Oltr le clssi abbiamo anche le interfacce le enum e gli array (che in java sono un tipo di dato, diiamo che è un oggetto complesso)
+
+Le classi sono la nostr principale occupazione. 
+Le classi possono essere custom, me le faccio io , oppure già scritte e disponibili nella libreria java che chiamiamo API Java. 
+
+Se non ci basta quanto scritto nellla libreria o customizzare qualcosa possiamo scriveci le nostre clasis custom e nella maggior parte dei casi lo dobbiamo fare perche la logica dell'applicazione a sappiamo solo noi. 
+
+Non ce limite a mettere oggetti uno dentro l'altro. piu una clase ha proprietà complesse, altri oggetti al suo interno, più è complesso. 
+
+Normalmente ci servono per creare oggetti. Classi istanziabili perche un oggetto noi lo chiamiamo istance of cioè isanza della classe. 
+Poi abbiamo nche classi non istanziabili ad esempio la classe math oppure le classi wrapper perche in effetti contengono tutti metodi statici. possiamo creare una classe di questo tipo senza fare new.
+
+Una classe puo anche non avere nulla o solo proprietà e viceversa. Queste si chiamano le classi ibride. Per esempio string.
+
+---------------
+
+PRINCIPI
+- astrazione: astrazione di un oggetto della realtà dentro il mio programma. Ci sono tanti linguaggi. Paradigma: modo di approcciare. 
+Programmazione perforata.
+Programmazione strutturata. Teorema JB: sequenza-selezione-iterazione.
+Poi programmazione procedurale con COBOL, Pascal. Ha l'idea he i dati sono da una parte es. matrice,array e poi abbiamo una rocedura di logica dei dati che scriviamo da un'altraparte. Tiene separati dati e procedura per leggere i dati. 
+Programmazione ad oggetti. Preciso scopo di modellare la realtà nei linguaggidi programmazione. SmallTalkè stato il primo. Per programmare guardo la realtà, vedo che oggetti ci sono,scrivo gli oggetti e mi concentro su cosa quegli oggetti fanno. Questo sarebbe l'astrazione. Noi astraiamo dalla realtà quell'oggetto e lo facciamo diventare un pezzo di codice. Quello che noi creiamo sono tipi di dati astratti. Questi tipi di oggetto ADT(abstract data type) sono ftti di dati e metodi. 
+Gli oggetti sono in una certa relazione con altri ogetti. (uso-aggregazione-ereditarietà).
+Più un linguaggio è ricco più ti permette di o ti obbliga a consideare molte coe quando parliamo di oggetti. 
+
+
+- incapsulamento: dobbiamo considerare che spesso gli oggtti sono incapsulati. più è complesso più abbiamo a disposizione dei metodi per manipolare un oggetto che noi dobbiamo dichiarare non raggiungibile diretamente, cioè private. per rispettare l'incapsulamento java ci mette a disposizione dei modificatori di accesso. default-public-private-protected. Queste paroline permettono di gestire l'accesso a quelle proprietà, metodi e in alcuni casi le classi. parte di sintassi che ci permette di rispettare il principio di incapsulamnto e i programmi risultano più solidi. Mi serve a gestire l'accesos a proprietà o metoi del programma.
+
+- polimorfismo: in base ai dati viene cosstruito un oggetto di forma differente. più in la vedremo questa cosa con le interfacce. Capacità degli oggetti di assumere diverse forme.
+Overload mi permette tra l'altro di implementare il polimorfismo all'interno di java. Succede nella stessa classe. Metodi con lo stesso nome ma con parametri diversi. Non scrivo da nessuna parte che è un overload. Al massimo lo metto io.
+Override si può fare solo nel caso di erditarietà. Prevede che i metodi siano esattaete uguali. Non si può fare nella stessa classe. Preved che esista una gerarchia ereditaria. Posso osvrascrivere un metodo della classe genitore. Qui invece mettiamo l'etichetta @override. Le classi fondamentali del linguaggio sono in java.lang 
+Tra le classi del pacchetto di java.lang troviamo la classe object che è la radice delle classi in java. !!! Tutte le classi di java estendono object !!! 
+java.lang.object rappresenta il più generico possibile. Dal genitore si puòeredtare tutto ciò che non è privato. La classe object ci mette a disposizione dei metodi tra i quali troviamo il toString che viene evocato quando mandimo in stampa un oggetto. Il metodo toString ci dice il nome dellla classe seguito da una chiocciola seguito da integer.toHexString(hashCode()). Sarebbe nome della classe, chiocciola, e una serie di nomi. Per questo noi facciamo l'override del toString cosi stampiamo noi quanto vogliamo.
+I quattro metodi override principali sono: 
+1) toString:
+2) clone : clonare oggetti java
+3) equals : modo per distinguere oggetti anche nel caso in cui ce ne siano migliaia di migliaia. E devo essere capace di dire quando due oggetti sono ugualli.
+4) hashCode : gli chiediamo quale è il codice. Come se fosse il numero di telaio. è ii riferimento. Questo numero serve solo nel caso in cui abbiamo due oggetti coincidenti, e non sono due oggetti diversi. Se io e un'altra persona abbiamo lo stesso numerino ci porta ad entrambi allo stesso giubbino ma non sappiamo dove sta qel giubbino nel guardaroba. Il giubbino è sempre e solo uno.
+
+La gestione della memoria se la smazza la macchina virtuale e non il programmatore.
+
+Troviamo @override che è una annotazione. Non è obbligatoria ma se non c'è non sappiamo se c'è quel metodo nella classe super. Mettendo la chiocciola siamo sicuro che ci sia nella classe superiore nella class esuperiore. L'unica cosa che può cambiare è la classe di accesso. Ma se il genitore dice che ad esempio è protected noi possiamo solo essere piu permissivi.
+
+- ereditarietà: è singola. posso estendere una sola classe per volta. Questo fatto può essere limitante prchè se estendo una classe astratta non posso estenderne un'altra.
+Invece le interfacce si possono estendere di più, non ce limite. 
+
+----------------
+
+INTERFACCE
+
+E' come una classe ma con la parolina abstract davanti. Non si può fare un oggetto a partire da una classe astratta. Per utilizzarla devo per forza estenderla, creare una classe concreta a partire da una astratta. Se la sono inventata perche non tutti gli oggetti sono concreti. 
+SE voglio obbligare tutte le classi che si dichiarano figura geometrica ad implementare certi metodi, cioe a darmi un mdoo per darmi la supeficie, costruisco la classe retttangolo che estende la classe figura gemoetrica. 
+Si parla di PPC : programmazione per contratto. 
+Interfacce sono un esempio estremo di classe astratta.
+Basta solo un metodo che sia astratto affinche la classe sia astratta. 
+
+Gli oggetti tra di loro stanno in una qualche relazione e nel momento in cui ne ho molti di oggetti all'inizio avrò bisogno di classi astratte e interfacce....
+
+(TIOBE index)
+
+-------------------------------
+STATIC significa che appartiene alla classe e non agli oggetti. Un oggetto esite in quanto esiste una classe. Java oltre a definire cosa è un oggetto definisce anche la classe class.
+Quando scriviamo static serve per collegare proprietà e metodi all classe. Tutto quello che è static io me lo porto dietro per tutta la durata del programma. Static mantiene le cose in memoria. Per questo un programmatore cerca di usarlo con parsimnia. 
+
+ 
+-----------------------------------------
+java.io.File io sta per input/output e serve per leggere file in java
+java.util.Scanner qui invece prendiamo lo scanner per leggere il file
+
+Introduciamo il FileReader però è una lettura carattere per carattere. Per evitare interruzioni usiamo un buffer. Questo modo considera i flussi (stream). Posso intercettare con java i flussi. 
+
+Se invece il file voglio scriverlo da qualche parte uso un file output.
+
+mar dario-ghione
+mer 
+gio - mauro 9-13
+ven
+
+-----------------------------------------
+----- TEST -----
+Qual è il concetto fondamentale di OOP (Programmazione Orientata agli Oggetti) in Java?
+*
+Array
+Classe
+Istruzione if
+Ciclo for
+Qual è il costruttore di default di una classe Java se non viene fornito alcun costruttore?
+*
+new()
+initialize()
+default()
+Viene creato automaticamente
+Cosa rappresenta la parola chiave 'static' in Java?
+*
+Una variabile che può essere modificata
+Un'istruzione di condizione
+Un membro di classe che appartiene alla classe stessa e non alle istanze delle classi
+Una variabile locale
+Quale dei seguenti tipi di dati è usato per rappresentare un singolo carattere in Java?
+*
+char
+letter
+character
+single
+Qual è il modo corretto per dichiarare e istanziare un array di interi in Java?
+*
+array<int> numbers = new array<int>(5);
+int[] numbers = new int[5];
+int[5] numbers = new int[];
+int numbers = [5];
+Qual è il nome del metodo utilizzato per ottenere la lunghezza di una stringa in Java?
+*
+getLength()
+length()
+size()
+getSize()
+Qual è il risultato dell'esecuzione del seguente codice Java?
+int x = 5;
+System.out.println(x++);
+*
+5
+6
+4
+Errore di compilazione
+Quale operatore viene utilizzato per confrontare l'uguaglianza di due valori in Java?
+*
+==
+=
+===
+!=
+Qual è l'output del seguente codice?
+String str = "Hello";
+str.concat(" World");
+System.out.println(str);
+*
+Hello World
+World Hello
+Hello
+World
+Qual è il modo corretto per dichiarare una costante in Java?
+*
+const int VALUE = 10;
+int final VALUE = 10;
+final int VALUE = 10;
+constant int VALUE = 10;
+Quale delle seguenti afferenze sulle interfacce in Java è corretta?
+*
+Un'interfaccia può avere variabili statiche
+Una classe può implementare più di un'interfaccia usando l'operatore 'implements'
+Gli oggetti possono essere istanziati direttamente da un'interfaccia
+Le interfacce possono avere costruttori
+Qual è il vantaggio di utilizzare i tipi di dati wrapper in Java?
+*
+Occupano meno spazio in memoria
+Sono immutabili e forniscono metodi utili
+Possono essere utilizzati come indici di array
+Possono contenere più valori
+Quale dei seguenti è un ciclo in Java che garantisce l'esecuzione delle istruzioni almeno una volta?
+*
+for
+while
+do-while
+if
+Qual è il risultato dell'esecuzione del seguente codice?
+int[] numbers = {1, 2, 3, 4, 5};
+System.out.println(numbers[10]);
+*
+1
+5
+Errore di runtime: ArrayIndexOutOfBoundsException
+Errore di compilazione
+Qual è il concetto che consente a una classe di ereditare i membri e i metodi di un'altra classe in Java?
+*
+Overloading
+Encapsulation
+Inheritance
+Polymorphism
+Qual è il tipo di dato utilizzato per rappresentare valori booleani in Java?
+*
+bool
+boolean
+bit
+logic
+Qual è il compito di un costruttore in Java?
+*
+Definire le variabili di istanza di una classe
+Fornire accesso ai dati della classe
+Creare un'istanza di una classe e inizializzare i suoi attributi
+Definire i metodi di una classe
+Quale delle seguenti afferenze riguardo ai costruttori è corretta?
+*
+Una classe può avere solo un costruttore
+Un costruttore può avere un valore di ritorno
+Un costruttore può essere ereditato da una sottoclasse
+Un costruttore ha sempre lo stesso nome della classe
+Quando viene chiamato il costruttore di default di una classe?
+*
+Quando si crea un'istanza della classe utilizzando l'operatore 'new'
+Quando si chiama un metodo della classe
+Quando si definiscono variabili di istanza
+Nel momento in cui la classe viene dichiarata
+Quale delle seguenti dichiarazioni di classe contiene un costruttore valido?
+*
+class MyClass { void MyClass() {} }
+class MyClass { constructor() {} }
+class MyClass { MyClass() {} }
+class MyClass { int MyClass() {} }
+Qual è il risultato dell'esecuzione del seguente codice?
+public class Studente {
+    String nome;
+    int età;
+
+    public Studente(String nome, int età) {
+        nome = nome;
+        età = età;
+    }
+
+    public static void main(String[] args) {
+        Studente studente = new Studente("Alice", 20);
+        System.out.println(studente.nome + " " + studente.età);
+    }
+}
+*
+Alice 20
+null 0
+null 20
+Errore di compilazione
+Qual è il modo corretto per accedere ai membri di istanza di una classe?
+*
+Usare l'operatore '.'
+Usare l'operatore '::'
+Usare l'operatore '->'
+Usare l'operatore '=>'
+Qual è il termine utilizzato per nascondere i dettagli di implementazione di un oggetto?
+*
+Ereditarietà
+Incapsulamento
+Polimorfismo
+Costruttore
+Quale delle seguenti afferenze riguardo agli oggetti in Java è corretta?
+*
+Un oggetto è un'istanza di una classe
+Una classe è un'istanza di un oggetto
+Gli oggetti possono esistere senza una classe
+Gli oggetti possono essere definiti senza attributi
+Quale delle seguenti afferenze sulle variabili di istanza in Java è corretta?
+*
+Le variabili di istanza sono sempre dichiarate come statiche
+Le variabili di istanza sono condivise tra tutte le istanze di una classe
+Le variabili di istanza sono inizializzate automaticamente con il valore 0
+Le variabili di istanza rappresentano attributi specifici dell'oggetto e possono avere valori diversi per ciascuna istanza
+Quando si crea una nuova istanza di una classe in Java utilizzando l'operatore 'new', quale operazione viene eseguita?
+*
+Viene creata una copia esatta dell'oggetto esistente
+Vengono inizializzati tutti gli attributi con valori predefiniti
+Viene allocata memoria per l'oggetto e viene chiamato il costruttore della classe
+Viene clonata l'istanza di una classe correlata
+Quale delle seguenti istruzioni stamperà 19.0?
+System.out.println(Math.floor(19.7));
+System.out.println(Math.round(19.7));
+System.out.println(Math.ceil(19.7));
+System.out.println(Math.abs(19.7));
+Nel linguaggio Java, il cast serve a:
+*
+Ottenere una attribuzione forzata di tipo
+Elencare le classi del package
+Elencare le classi del package e gli oggetti costruiti
+Dividere il codice in moduli
+Le convenzioni usate dai programmatori Java prevedono che:
+*
+Il nome delle classi cominci con lettera maiuscola, quello dei metodi con la minuscola
+Il nome delle classi cominci con lettera minuscola, quello dei metodi con la maiuscola
+Il nome delle classi cominci con lettera maiuscola, quello dei metodi con la maiuscola
+Il nome delle classi cominci con lettera maiuscola, quello dei metodi con la doppia underline
+Quale delle seguenti istruzioni di inizializzazione di un array di interi è sbagliata?
+int[] v = {1,2,3};
+int[] v1 = new int[]{1,2,3};
+int[] v3 = new int[3];
+int[] v2 = new int[3]{1,2,3};
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------- LEZIONE 07/09 --------------------
+HTML 5 include html, css e js le quali mi permettono di dare un aspetoto grafico ad una vista. dare un comportamento(behaviour) alla vista.
+
+La mia macchina è solo un visualizzatore, draw.io sta girando in cloude remotamente diverso dalla mia macchina. sta giradno in un server e nel server c'è il software.
+Noi riusciamo a vedere questo posto grazie al suo inirizzo(url) il quale mi permette di accedre al server tramite un protocollo http, 
+cioè un insieme di regole da seguire per potersi confrontare. s dopo http significa che i dati sono crittografati.
+
+HTTP ci permette di trasferire i dati in maniera sicura dal client (che sono tanti) al server (che è uno solo). 
+
+tecnologie CLIENT SIDE e SERVER SIDE.
+
+HTML 5 è un complesso di tecnologie. 
+
+Dal lato del server troviamo diversi linguaggi, es ruby python php c# java.
+
+il client raggiunge il server facendo una richiesta. il server a fronte di una richiesta ritorna sempre una risposta e può essere che ciò che richiedi non lo trova (404).
+
+Le cose che scriveremo in java le metteremo in un server che capisce java graie al que siamo in grado di ripondere alle richieste del client.  
+
+Dietro il server abbiamo un db con sql. Possiamo avere diversi db, oracle sequelServer ecc... ci sono altri db chiamato noSql. 
+I dati si trovano sul db. Io non ti posso far accedere direttamente al db. il sofrtware hala capacità di chiamare il db farsi dare i dati e ritornarli 
+a chi li ha chiesti dopo aver verificato che sei autorizzato a vedere quei dati e io ti ritorno solo i dati tuoi.
+
+Questi dati però te il devo ritornare sotto forma di una table (vista html) e farò in modo di farli vedere a chi me li ha chiesti. 
+
+Bisogna imparare a ricevere richiste (java). Preparare richieste (html,css).
+
+Anche il server ha la capacità di memorizzare info. di solito le salva nel db così possono essere facilmente ritorvate.
+
+Apache Tomcat : server web che capisce java. Capisce richieste e ritorna rispsoste. 
+
+MODEL sono il modello dei dati (mvc : model view control)
+
+---------------------------------
+LEZIONE 11/09
+
+sia parte java sia parte web 
+
+file jsp è come fosse un file html.
+
+-------------------------------------
+LEZIONE 14/09
+
+una cosa che bisogona fare se siamo dei rogrammatori dobbiamo dividere un proble a in sottoproblemi. 
+Siamo programmatori java e in quanto tali apparteniamo ad un linguaggio imperativo ove una delle caratteristiche è che i nostri metodo sono comandi (fai questo).
+Un'altra carateristica è dividi et impera. Non metto tutto il codice tutta la logica dle coice nel main ma dev cercare di dividere il problema in tante parti 
+cioè in tante classi e in tanti metodi.
+
+Ogni classe rappresenta un tipo di oggetto. Un oggetto di uncerto tipo. Sono tutte classi ma devo stare atttento a cosa sono gli oggetti che sviluppo a partire 
+da quella classe.
+Poi possiamo dire che ci sono certi oggettiche rappresentano il dato dell'aplicazione. ALtre le viste le interfacce dell'aplicazione Altre clssi invece la logica 
+dell'applicazione.
+Quando il mio progetto diventa più corposo allora comincio a dire che inizio a dividere, non metto tuto insieme e divido la mia logica in pezettini. 
+Quando ho tanti argomenti mi conviene dividere ancora di più, specializzare gli oggetti è una idea è quella che si chiama 
+MVC (model view controller). Cioè splittiamo il codice in parti, in java facciamo tre pacchetti. Nelle viste mettimao le interfacce utente, sul web saranno pagine web, 
+sull'app saranno schermate activity del'app, in un distributore è la parte con cui interagimo con il macchinario. L'utente intragisce con l viste e vuole accedere ai dati. 
+L'utente attraverso la vista ha dei metodi, cioè modi per fare cose (pulsanti o istruzioni  di menu)
+attraverso ii quali chiama il controller che accede al model e aggiorna la vista. S ad esempio è un form di login quellla azione viene inviata al controller che la ricev, 
+confronta i dati chiedendo se esiste un user con quelle username e password e se ci sono li aggiorna nela vista.
+Questo approccio è vantaggioso perche posso dividere il lavoro in maniera semplice. Quanod devo aggiornare diventa più semplice anche se i fase di progettazione 
+non è così sempplice perche devo preoccuarmi di diversi aspeti cioè capire quali ruoli nel mio progetto devo assegnare e poi 
+anche costruire la logica per acceder ai dati. Dopo di questo però il lavoro diventa più fluido e anche aggiornare i dati diventa più facile.
+Per ora prendiamo MVC come una divisione di comodo per le mie cartelle.
+
+Alla fine vedremo SPRING, un framework per java, che contiene spring mvc. 
+
+
+Quindi in un progetto, dentro src, facciamo tre cartelle:
+- contrller
+- model
+- view
+
+
+Dentro model inseriamo lo Studente, Materia, Esame. L'esame mette insieme materia ed esame. Anche e non si tratta di un ogetto fisico Esame è un oggetto.
+Oggetto sia tangibile che intangibile.
+Poi per essere più precisi possiamo adare a specificare meglio le caratteristiche dei vari oggetti dentro model.
+Il compito del costruttore sarebbe quello di inizializzare le proprità dell'oggetto.
+Get e Set servono per modificare attributi di un oggetto nel momento in cui questo tramite incapsulamento è considerato private.
+Gli oggeti devono rispttare un concetto che si chiama incapsulamento. Chiamato così perche si ritiene che gli oggetti della realtà debbano essere protetti. 
+Se non ti espongo set nome, ad esempio, non possiamo più modificare il nome ma possiamo solo leggerlo con il get.
+Se poi voglio ppresentare uno studente come se fosse uno studente esiste un apposito metodo che hanno tutto gli oggetti, perche non appartiene 
+al singolo oggetto ma ad Object, e si chiama il toString, cioè una rappresentzione in stringa di un oggetto. 
+Il programmatore fa l'override del metodo to string decidendo quali proprietà e metodi includere nle toString.
+Indipendentemente da come abbiamo aggiunto il dato possiamo ad esmepio trasformarlo e aggingiamo nel return del get un UpperCase.
+Mi devo rendee facile la strada per fare le modifiche. 
+Get, Set, toString concetti base che abbiamo sempre dentro il model. 
+
+Esame è un pò più complesso perche ha il collegamento tra materia e studente. La proprietà di un esame è un private Studente. 
+(Studente con s maiuscola, è la classe cioè il tipo di dato. Studente con s minuscola è l'oggetto).
+Al quale collego la Materia. 
+Java ci ha dato i componenti bas pe realizzare tutte le classi (classi astratte - adt(abstract data type))
+
+Se non mettiamo set e la proprietà è privata nesusno potrà modificare i dati di quell'esame. Per questo usiamo solo il get così si può solo vedere ma non modificare.
+
+Quando chiamiamo il toString su un esame viene passato uno studente. Il software, se disponibile, richiama il toString dello studente.  
+
+Il controller è la logica. Qui creiamo le azioni per gestire gli esami. Gestione esami dispone di una collezione di studenti, oggetti di tipo studenti.
+ArrayList<qui inseriamo la classe di riferimento> qui il nome che vogliamo dare a quell'oggetto.
+Se la classe si trova da un'altra parte dobbiamo importarla.
+
+Una volta che dentro controller abbiamo tre ArrayList (cioè dichiarati) dobbiamo inizializzarli e la prassi vuole che sia il costruttore a inizializzarli.
+Nell'inizializzazione non dobbiamo specficare  nelle <> la classe di riferimento.
+
+Poi possiamo creare dei metodi, ad esempio metodo per aggiungere degli studenti alla mia colllezione di studenti(ArrayList). stessa cosa con meteria ed esame.
+
+Poi ci vorrà un metodo per leggere dall'esterno studenti, insegnamenti e esami. Siccome sono private usiamo solo get.
+Chiameremo l'oggetto gestione esame gli diciamo di aggiungere lo studente. Poi con il metodo per legere gli studenti mi ritornerà tutta la lista di stidenti.
+
+Dentro VIEW invece facciamo una classe in cui abbiamo una lisa di studenti. Attraverso il registro aggiungiamo studenti, materie e assegnamo i voti agli esami. 
+Nella vista registro posso anche avere solo dei metodi. 
+Un metodo che mostra studenti. Il regisro potrebbe avere delle sue proprietà. 
+Il registro attrverso un metodo ritorna una stringa dove mi stampa lo studente. Prende in argomento uno studente e mi ritorna uno studente sottoforma di stringa. 
+
+Il main è un'altra cosa. Serve solo per far partire il programma. Il main si deve procurare uno studente s, una materia, una gestioneEsami. 
+
+Possiamo crearci un altro controller, una classe che ha il compito di leggere file. Ha il compito di leggere file. Diamo un percorso al file.
+Gli mettamo static.
+
+Il metodo leggiFileStudenti passandogli una stringa nomeFile ci ritorna un arraylist di studenti. Poi gli do il percorso del file. 
+tempStudenti è un arrray temporaneo di sudenti.
+
+ Se evidenziamo un metodo che ritorna qualcosa, ad esempio arraylist, ci crea una variabile corretta del tipo che riitorna questo metodo. (alt+shift+l)
+ 
+Nella cartella files, stesso livello di src, inserisco il file studenti.txt
+
+Per ogni studente contenuto in studentiLetti usa il gestionale e aggiungi lo studente al gestionale 1. Poi chiedimao al gestionale di darci i nomi degli studenti.
+
+Se il main è troppo grande posso dividerlo ancora. Possiamo prendere parte del main e inserirlo dentro un metodo che mettiamo fuoridal metodo main. 
+
+Principio di responsabilità singola. 
+
+COMPARABLE e COMPARATOR sono delle interfacce che danno dei moetodi. Interfacce che agscono sullo stesso oggetto e dire sulla base di un ctiterio viene prima 
+e quale oggetto viene dopo se io dovessi mettere in ordine unn certo numero di oggetti.
+Mi da un criterio in quanto non esiste in que caso un criterio naturale.
+L'interfaccia comparable ci da l'ordinamento naturale. 
+Comparator ci da gli altri fattori di ordinamento.
+Sugli oggeti siamo noi a dare il criterio con il quale si ordinano. 
+
+Quindi su studente possiamo implementare Studente. Comparable ha solo il metodo compareTo e siccome lo studente ha solo i nome io posso comparare studenti solamente secondo
+i loro nomi. Questo metodo è disponibile per le stringhe. Qui poi è presente un ordinamento naturale che è quello alfabetico.
+
+Collections.sort(studenti) metodo per ordinare. Sort ordina gli studenti secondo il criterio della classe, cioè alfabetico.
+
+---------------------
+XAMPP comprende apache myswl php perl. viene utilizzato dagli sviluppatori per non dover installare più software. Comprende mysql e unainterfaccia alla uale si accede tramite web browser econtiene tomcat 
+cioè il server dove si pososno rilasciare app svilupppate con java enterprise.
+Di default la porta di mysql è 3306. 
+
+Ora proviamo a collegre un database.
+
+Il database è un database. Creiamo un package database dentro src. Se ti vuoi connettere con java a sql ci serve mysql connector java.
+
+Maven mbn repository contiene librerie pronte all'uso. 
+
+creiamo la cartela lib ci mettiamo il file jar e facciamo add to build path.
+
+Per fare un colllegamnto abbiamo bisogno di tre parametri.
+- HOST
+- USER
+- PASS
+
+Questo colleamento al db deve utilizzare un oggetto e nel mondo ad oggetti anche una connessione al db è un oggetto ed è un oggetto di tipo connection. 
+Per ottenere effttivamente una connessione odbbiamo utilizzare il driver della connessione.
+DriverManager è una classe del file jar che abbiamo passato e ha un metodo che si chiama .getConnection la quale richiede tre parametri (HOST, USER, PASS);
+
+Quando chiamo getConnessione veriica prima che sia connesso. Se è connesso lancia il metodo connetti, altrimenti dice null.
+
+[Se dopo un if for while c'è una solo una istruzione può non esserci la coppia di graffe e verrà eseguita qolo quella istruzione. 
+ma possiamo avere tranquilllmamente un else.
+Se invee dobbiamo eseguire più istruzioni (un blocco di istruzioni) ci vogliono le grafffe]
+
+Una volta creato il legamento tra i due mondi possiamo usare questo collegamento per fare delle query al db.
+Ad esempio leggere una tabella studente.
+Creiamo una classe StudentiDB così sappiamo che li c'è la lista studenti del db.
+
+- prima creiamo un collegamento al db.
+- poi un arraylist da riempire di studenti. Per riempirlo usiamo un metodo public void inizializza in cui vogliamo inizializzare l'arraylist cioe riempirlo di studenti.
+Ci creiamo una query con la quale chiediamo gli studenti. 
+Una volta che abiamo la query abbiamo bisogno di una busta per portare questa richiesta al db. Statement (java.sql) stat = db.getConnessione(). La connessione mi da uno statement.
+Con il db abbiamo sempre le eccezioni.
+In questo caso (select * from studenti) stiamo facendo una vera e propria query la quale ritorna dei risultati. Solo in questo caso ci ritorna qualcosa.
+Con tutti gli altri comandi ci ritorna "affected rows" cioè le linee coinvolte in quel comando.
+
+Attraverso lo statement (busta in cui scrivi le istruzioni che posso mandare al db). Se il db li trova me li ritorna con ResultSet (java.sql) che di solito chiamiamo rs.
+stat.executeQuery("select * from student);
+rs è un contenitore di risultati (tipo un arraylist) e posso scorrerlo con il while.
+finchè ci sono righe possiamo slavare dentro una string nome quello che leggo dentro rs.
+Possiamo creare uno studente temp e poi lo aggiungimo al contenitore
+
+RECAP: ci solleghiamo, abbiamo una scatola vuola, quando chiamiamo il metodo inizializza fa una query al db e se ci sono riultati ogni riga prende il nome e lo usa 
+per creare un oggetto temporaneo di tipo studente e lo aggiunge  contenitore studenti. Ora possiamo chimare il get studenti e aspettarci l'elenco studenti.
+
+Nel controller, gesioneEsami, possiamo fare un metodo ad hoc per leggere studenti del db.
+Chiama il db e  su db chiama il metodo inzializza. di StudentiDB
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+LEZIONE 18/09
+
+ALCUNI LINGUUAGGI COME JS SQL PyTHON HANNO FUNZIONI CHIAMATE BUILT IN CIOè DIRETTAMENTE DENTR IL LINGUAGGIO CI SONO GIà FUNZIONALITà PRONTE. SOMMA CONTA MEDIA CC...
+
+IN JAVA NON ABBIAMO FUNZIONI BUILT IN MA DOBBIAMO USARE DELLLE CLASSI GIA' PRONTE. PERO' AD ESEMPIO CON LA ROBA MATEMATICA ABBIAMO LA CLASSE MATH IN CUI ABBIAMO STATIC, 
+CIOE' CHE APPPARTIENE ALLA CLASSE. 
+QUESTO PERCHE L'UNITA' MINIMA DI PROGRAMMAZIONE IN JAVA E' LA CLASSE.
+
+IN JS AD ESPMIO ABBIAMO FUNZIONI CHE SI USANO SENZA METTERGLI UN PUNTO DAVANTI (ES ALERT). 
+
+ALLA RADICE DEGLI OGGETTI IN JS NON C'E OBJECT MA C'E WINDOW, LA FINESTRA LA QUALE HA PROPRIETA' E METODI.
+QUINDI QUANDO SCRIVIAMO ALERT E' COME SE SCRIVESSIMO WINDOW.ALERT
+SICCOME AVVIENE TUTTO NELLA WINDOW NON C'E BISOGNO DI SCRIVERLO OGNI VOLTA. COMUNQUE SIA NON SONO METODI BUILT IN.
+
+IN SQL NON FA PARTE DELLA PROGRAMMAZIONE OBJECT ORIENTED QUINDI NON CI SONO DIRETTAMENE GLI OGGETTI. 
+
+IN JAVA AD ESEMPIO TUTTE LE COSE CHE VOGLIAMO DOBBIAMO COSTRUIRLE OPPURE POSSIAMO USARE COSE CHE QUALCUNO HA GIA' COSTRUITO.
+IN JAVA ABBIAMO SOLO 8 TIPI GIA' COSTRUITI BUILTI IN (I PRIMITIVI) TUTTO IL RESTO DOBBIAMO CREARLO NOI. 
+
+QUESTO E' IL CONCETTO FONDAMENTALE.
+
+SAPPIAMO CHE CI SONO VARI TIPI DI PROGRAMMAZIONE, VARI APPROCCI. APPROCCI CHE CHIAMIAMO PARADIGMI. CI SONO CENTINAIA DI LINGUAGIG PERO' QUESTI LINGUAGGI APPARTENGONO 
+A DELLE FAMIGLIE.
+
+I LINGUAGGI PIU' NOTI, ES. C C++ JAVA, APPARTENGONO ALLA FAMIGLIA DEI LINGUGGI IMPERATIVI CIOE' FAMIGLIA CHE ACCOGLIE LINGUAGGI STRUTTUATI E CHE PERMETTONO QUELLA 
+CHE SI CHIAMA LA PROGRAMMAZIONE PROCEDURALE QUINDI ABBIMO VARI PARADIGMI CIOE' UNO STILE DI PROGRAMMMAZIONE CIOE' TUTTI I PROGRAMMATORI DEVONO RIOLVER UN PROBLEMA. 
+
+PRIMA SI PROGRAMMAVANO LE PRIME MACCHINE CON DELLE SCHEDDE PERFORATE.TUTTI I LINGUAGGI HANNO TROVATO IL MODO PER DIVIDERE IL CODICE IN BLOCCHI, ALCUNI LI CHIAMANO METODI ALTRI ROUTINE ALTRI PROCEDURE.
+SICCOME SONO ARRIVATI PRIMA QUELLLI CHE LO CHIAMANO PROCEDURE IN SEGUITO E' NATO IL MODO POCEDURALE.
+CIOE' DIVIDIAMO UNA PROCEDURA IN SOTTO PROCEDURE COSì OGNI VOLTA CHE HO BISOGNO DI QUELLA FUNZIONALITA' VADO A RICHIMAARE SOLO QUELLA.
+TIENE SEPARATI DATI E FUNZIONI CHE PROCESSANO I DATI.
+
+NEL MONDO AD OGGETTI IN UNO STESSO POSTO, LA CLASSE, METTIMAO INSIEME PROPRIETA E METODI. 
+I PRINCIPI DELLA OOP SONO:
+- DEFINIRE NUOVI TIPI DI DATI
+- INCAPSULARE VALORI E OPERAZIONI
+- RIUSARE CODICE ESISTENTE
+- SUPORTARE IL POLIMORFISMO
+
+INTORNO AGLI INIZI DEGLI ANNI '80 NASCE UN NUOVO TIPO DI PROGRAMMAZION -> ADT (ABSTRACT DATA TYPE) 
+
+
+POI ABBIAMO LINGUAGGI MULTIPARADIGMA, CIOE ABBIAMO DIVERSI APPROCCI. (JS PYTHON ECC..)
+
+IN JAVA INVECE SOLO AD OGGETTI.
+
+IN JAVA 8 E' STATA AGGIUNTA LA PROGRAMMAZIONE FUNZIONALE. PER ADESSO ABBIMAMO OGGETTI E SI POSSONO TROVARE 
+IN UNA RELAIONE D'USO 
+IN UNA RELZIONE DI AGGREGAZIONE 
+IN UNA RELAZIONE DI EREDITARIETA' 
+
+SQL INVECE SAREBBE UN ALTRO PARADIGMA, CIOE' DICHIARATIVA (COSA FARE) CHE POI SI DIVIDE IN TRE 
+- LOGICA (MACHINE LEARNIG O INTELLIGENZA ARTIFICALE) SI BASA SUI SILLOGISMI. GLI DIAMO TANTISSIME VERITA' DI FATTI CHE SUCCEDONO COSI POI POSSO FARGLI DOMANDE E AVERE RISPOSTE.
+- FUNZIONALE (BASATA SULL'USO DELLE FUNZIONI CHE FACCIAMO NELL'AMBITO DELLA MATEMATICA. ABBIAMO SEMPRE UN INPUT E UN OUTPUT. NON MODIFICANO QUELLO CHE è ESTERNO ALLA FUNZIONE)
+- DATABASE (è DICHIARATIVA PURA. NON SAPPIAMO COME FA  AFARE COSE, CI FIDIAMO DELLA MACCHINA CHE SA COME FARE. DICHIARIAMO COSA VOGLIAMO E IL LINGUAGGIO TROVA IL MODO PER RIDARCI DELLE COSE. IN QUELLA IMPERATIVA INVECE GLI DICIAMO PASSO PASSO COSA DEVE FARE.
+
+CI SONO QUINDI DIVERSI TIPI DI APPROCCI ALLA PROGRAMMAZIONE. A SECONDA DEI LINGUIAGGI POSSO USARE UN APPROCCIO O UN ALTRO. 
+
+NEL CASO DEGLI OGGETTI DEVO DIRE ANCHE CHI E' CHE FA PERCHE OGNI OGGETTO E' RESPONSABILE DI UNA CERTA AZIONE. 
+
+JAVA E' OOP, QUINDI DEVE TROVARE UN MODO PER REALIZZARE PRINCIPI DI ASTRAZIONE, POLIMORFISMO, INCAPSULAMENTO ED EREDITARIETA'.
+
+GARBGE COLLECTOR: MECCANISMO CHE SI OCCUPA DI PULIRE LO SPAZIO DI MEMORIA CE VIENE INVECE ASSEGNATA QUANNDO CHIAMO UNA AZIONE SU UN OGGETTO O CREO UN OGGETTO QUANDO CHIAMO NEW.
+
+TUTTO QUELLO CHE SUCCEDE DENTRO JAVA 
+
+L'OGGETTO JUMBO JET E' MOLTO PIU' COMPLESSO QUINDI DENTRO DI SE UTILIZZERO' MOLTI OGGETTI. 
+
+MYSQL, DEVO TROVARE UN MODO PER PORTARGLI UN MESSAGGIO. L'ACCOPPPIATA DI SOLITO E' MYSQ E MYHP. ANCHE PHP, LINGUAGGIO SERVER SIDE, E' CAPACE DI PARLARE CON MYSQL ED E' 
+CAPACE DI FARLO CON LA SUA SINTASSI.
+IN JAVA HO BISOGNO DI DIVERSI OGGETTI, COME AD ESEMPIO LA CONNESSIONE. UNA VOLTA CHE HO UNA CONNESSIONE POSSO PORTAEGLI UN MESSAGGIO. 
+
+--------------
+
+NEL PACCHETTO MODEL TROVEREMO SEMPRE LE TABELLE CHE HO SALVATE NEL MIO DB. 
+NEL PACCHETTO DATABASE OLTRE IL COLLEGAMENTO AVRO' LE CLASSI CHE CHIAMANO TABELLA CHE CI PERMETTE DI FARE IL CRUD. 
+
+NEL MOMENTO IN CUI MI RAPORTO CON UN DB LE MIE TABELLE MI DEVONO FARE DA GUIDA PER LA CREAZIONE DELLE CLASSI.
+LA CLASSE STUDENTE RAPPRESENTA LA TABELLA STUDENTI NL DB. OVVIAMENTE IN JAVA DEVO MAPPARLA CON I TIPI DI DATO CHE HO A DISPISIZINE IN JAVA. 
+
+su localhost girano diversi servizi. 
+
+ogni db ha il suo driver. scarichiamo il driver, lo inseriamo nelle librerie di java facendo add to build path. drivermanager ha un metodo getConnection che se gli passiamo 
+tre cose giuste ci ritorna una connection.
+
+LA CLASSE è LO STAMPO DELL'OGGETTO. PRENDIAMO I DATI GREZZI DAL DB (SOLO QUELLLLI CHE A NOI SERVONO).
+
+studenteDAO( DATA ACCESS OBJECT ) CIOE' COLUI CHE ACCEDE AL DATO SUL DB. 
+come prima cosa dobbiamo creare un collegamento al db.
+
+ORM( object relation mapping )
+
+throw//sostituisco il mio contenitore con quello che arriva dal dbs rimpalla l'errore.
+try/catch lo gestisce.
+
+----------------------------------------------------------------
+
+nello schema draw.io, nelle tabelle, il - serve per dire private il + per dire public 
+
+il pacchetto database grazie alle sue classi DAO e Collegamento può effettuare i crud sul db.
+
+preparedStatement (evoluzione dello statement) previene le sequel injection. È diviso in due parti e facendolo in due tempi posso fare dei controlli. 
+
+IL MAIN USA GESTIONALE(GESTIONE ESAMI) CHE CHIAMA IL DAO E AGGIUNGE MATERIA
+
+JPA (java persistence api)
+
+JDBC (java database connectivity)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LEZIONE 21/09
+
+Db si trova su unserver, che è un pc, in cui gira appunto un db. se non gira non ti connetti. quindiprima di tutto abbiamo dovuto far girare il server del database.
+Nel nostro caso abbiamo usato Mysql il quale gira su un server, nel nostro caso local host (127.0.0.1 Poi dobbiamo aggiungere 3306 per accedere a mysql.), 
+ma potrebbe trovarsi da qualsiasi altra parte. 
+Il server che metteremo più avanti colllegandolo, che si chiama TOmcat, gira sepre sula tessa macchina. Questa macchina è un WEB server. 
+Cioè il server offre servizi ai client, cioè il nostro pc, con vari sistmi operativi, oppure un telefonoo o altro. Ogni client vule i dati che si trovano nel db 
+ma io non faccio  mai entrare un client direttament nel db, per motivi di sicurezza. Allora per dargli i dati ho bisogno diun software e di un linguaggio 
+server side per dare dati al client il quale chiama il server, fa una richeiesta (request), il server la elabora e ritorna una risposta(reponse). 
+Questo fatto succede sempre.
+Quando facciamo java programmiamo il server. Quando facciamo html programmiamo il client. Quando facciamo sql programmiamo il db. 
+Tutto insieme è il full stack. Altrimenti mi specializzo nelle tre varie cose(front, back o db).
+Con java noi facciamol'accesos al db, troviamo i dati che si trovano nelle tabelle, prepariamo una lista e ritorniamo la risposta in formato html. 
+Prima di dare la risposta ci stiamo concentrando nella parte per leggere e scrivere nel db e lo facciamo con il jdbc, con il quale abbiamo strumenti già pronti 
+per far parlar java e db. 
+L'evoluzione di jdbc è jpa.
+I client voglio i dati nel db ma devono interaggire con il server in cui c'è un linguaggio server side (java) che è capace di parlare con il db utilizzando 
+la libreria jdbc, cioè la connessione tra java e il db.
+
+Come avviene il fatto che noi possiamo leggere e scrivere sul db? intanto ci vuole un server che gira, poi dobbiamo eseguire:
+-1 connessione
+-2 portare una qery al db, ma la connessione ci collega al db al patto di avere un driver, un driver manager(che è una classe) otteniamo la connessione. 
+   Otteniamo un gestore di driver e lo abbiamo fatto.
+-3 statement che èuna specie di contenitore per le istruzioni sql(nel nostro caso).
+-4 se si tratta di una query, dopo aver avuo connessione, dobbiamo mettere la risposta dell query in un result set (risultati che ritornano da una query al db, 
+   solo le select).
+-5 scorrere il result set per utilizzare i dati del db.
+--> Questo perchè vogliamo fare il CRUD sul db. E questo lo facciamo grazie al jdbc.
+
+Se vogliamo leggere scrivere il db utiliziamo api, cioè classi, già disponibili. jdbc è quel pacchetto di classi che servono per leggere e scirvere in java.
+
+Per essere riconosciuto (es una stampante) ci vuole un driver. 
+
+RDBSM: Relational database management system. Ad esempio l'esame mette in relazione lo stundente e la materia. 
+
+La persistenza in java la stiamo facendo con jdbc(più avanti conoceremo jpa). Sempre per fare crud, posto che la tabella l'hai già creata. 
+
+Per fare un collegamento dobbiami avere:
+- HOST: nome del db (jaita93), indirizzo(localhost) rta(3306), tipo(mysql) e livello di api che stiamo utilizzando(jdbc). 
+- USER:
+- PASS:
+
+Anche le connessioni sono oggetti, di tipo Connection. In java vanno creati gli oggetto.
+La classe DriverManager(il driver che abbiamo scaricato e collegato al programma) ci permette di collegarci al db il quale ha un metodo (getConnection) 
+che ci permette di colllegarci al db. Se è tutto ok siamo connessi.
+Quando mi collego al db però c'è il rischio che vadano storte le cose, si è verificata una qualche ecccezione sql. 
+(es hano cambiato, porta psw nome db indirizoz ecc...) Ecczione sequel exception.
+
+Se tutto va a buon fine il this.connnesion diventa un oggetto vero e proprio di tipo Connection. 
+Collegamento lo lasciamo in una classe a parte così lo abbiamo già pronto. 
+
+Con il db abbiamo provato a fare un DAO. Lo chiamiamo così perchè nella vita lo chiameremo così. 
+Il DAO pattern in realtà è abbastanza complesso. Il compito di questa classe, materiaDAO, è creare modelare oggetti che accede al dato e il dato è materia 
+cioè il modello del record della tabella materie. La classe materia modella le materie del db, così come studene modella i record della tabella esami e così via.
+MateriaDAO ha bisogno prima di tutt di collegarsi al db per fare delle query o dare istruioni e per farlo abbiamo bisogno di un oggetto di tioè Statement. 
+Se le istruioni sono select, quindi query vere e proprie, otteniamo un set di risultati che metteremo dentro un oggetto di tipo result set.
+Una volta scaricati li metteremo dentro una scatola di oggetti di tipo materia. ArrayList di tipo materia. 
+
+STATIC: la stessa per tutta quella classe 
+
+Ora stiamo facendo un pezzetto cioè quando da java ci interfacciamo con il db. 
+
+i metodi della classe MateriaDAO vengono gestiti da gestioneEaami. 
+
+-------------
+inn PrjStudentiWeb scrivimo le cose in src/main/java e le cose in automatico le scrive in src
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LEZIONE 25/09
+
+Abbiamo un db e accediamo con una tecnologia sever side. 
+Il server ha un sofrtware (es. linguaggio Java) attraverso il quale mi colllego al db e il dib mi ritorna le info.
+Poi abbiamo internet al quale si collega il server e si collegano i cilent.
+Noi usiamo come server Tomcat, server che capisce java. attraverso il quale possiamo parlare con un altro serve che si chiamaMy SQL a atto che ci sia 
+il driver che abbiamo su tomcat. Sulla stessa macchina possono esserci diversi servizi attivi.
+Tomcat ci permette di collegarci al db.
+Localhost(computer) 8080(porta) htttp(protocollo).
+Il model rappresenta il dato, cioè quelo che si torva nel db. Dall'altra parte, lato client, avremo le viste. In mezzo abbiamo il controller che è 
+un altro pezzo nel softwae.
+Non metto tutto insieme così quando si tratta di cambiare le viste peerchè è diverso il client quindi ogni client ha una view diversa. 
+La logica di controllo è la stessa, per questo cambiano solo le view.
+
+Ora ci torviamo nella fase in cui dobbiamo fare un applicativo che tenga in considerzione MVC e che la vista siano pagine web. 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LEZIONE 26/09
+
+Spring: fa tutto lui. creiamo solo il model noi.
+
+Le nostre app hanno un db e una interfaccia web. E poi siamo sicuri che nelle radici dell'albero c'è un db. L'albero è la struttura che dobbiamo costruire noi.
+
+L'elemento centrale è sicuramente il db nel'estrazione del dato. L'utente vuole fare il crud. 
+Il db lo maneggiamo solo noi, altrimenti è a rischio. 
+
+In java abbiamo diversi layer per rappresentare tutto ciò.
+DAL = data access layer. Lo rappresentiamo con una classe DAO la quale produrrà oggetti per accedee ad una pecifica tabella del db. Nel db abbiamo una 
+tabella prodotti. 
+Prodotto è il notro model. La classe prodotto ha tante proprietà quante colonne ha la tabella e sono uguali alla tabella prodotti. 
+Il prodotto DAO è capace di colllegarsi alla tabella Prodotti(nel db) e alla tabella Prodotto(in java).
+
+Poi abbiamo un altro livello che chiamiamo SERVICE LAYER sotto il quale troviamo una classe, Prodotto Service, che si occupa di prendere i dati. 
+(come se fosse un cameriere che porta cibo in sala dal ristorante)
+
+Poi abbiamo un altro layer che è il CONTROLLER.
+Qui troviamo:
+- mvc controller parla in html. (qui è già tutto montato)
+- rest controler parla in json. Attraverso js trasformiamo il jsonn in componenti visuali e costruiamo una pagina html5. (qui è da montare). 
+  Nel mondo reale c'è un framework che si occuperà di questo aspetto (react o angular).
+  Rest ritorna dati grezzi.
+
+Tutti e due hanno comunque bisogno dei dati. Entrambi chimano il prodotto service ecc...
+
+Poi abbiamo un altro strato che è l'utente.
+
+TUTTA STA ROBA SI CHIAMA THREE TIER (github-maboglia-fondamenti-029architettura multi tier). 
+
+Nella realtà vera i livelli sono più di tre. 
+
+------------
+Servlet : classi java specificate nella comunicazione.
+
+A valle abbiamo le jsp cioè pagine web che capiscono java.
+
+La servlet viene compilata perche è già una classe java. 
+
+jsp e ervlet sono come due facce della stessa medaglia.
+
+La servlet è un classe astratta, gli dobbiamo dire come a usiamo. Estende una altra casse che si chiama HTTPServlt che gli da a disposizione dei metodi.   
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LEZIONE 28/09 
+
+Si occupa solo della comunicazione la servlet. 
+
+Mette in comunicazione i client con i server. 
+
+Anche se usiamo jsp sarà trasformata in una servlet. 
+
+Java cii da la possibilità di creare direttamente sevlet oltre pagine jsp che diventeranno servlet.
+
+Tomcat è un server contaniner. 
+
+la parte statica nelle jsp(che è la vista).
+la parte di logica pura la faccio in java.
+
+REST altro approccio per arrivare allo stesos risultato. 
+
+Prima avevammo gli array.
+Poi un intero framework di collezioni.
+Collection, evoluzione degli array.
+Java dice che non sono tutte uguali le collezioni. 
+Ci sono:
+lifo e fifo.
+set (no valori duplicati)
+list (si valori duplicati)
+map (collezione doppia fatta di key/value)
+Poi c'è tutto il discorso di ordinare, che ci porta al discorso delle interfacce come ad esempio le comparable.
+
+il dao sfruttando il collegam al db si fa dare i dati dallla tabella e con quellli crea oggetti di tipo canzone.
+
+Con il CanzoneDAO siamo in grado di fare le operazioni di basso livello, il crud. 
+
+Con il DOA si interfaccia il service. Come fossero un cameriere. 
+
+ORA PROVIAMO L'APPROCCIO CON REST CONTROLLER
+Parla in json. Dobbiamo riuscire a produrre un json di canozni. 
+Per produrre un json non abbbiamo bisogno di un nuovo model.
+Poi usiamo sempre il canzonDAO
+Poi usiamo sempre il canzone service.
+Il controller MVC si procura un elenco di caonzoni.
+
+Template : forma che avranno i dati. La pagina è sempre la stessa, quello che cambia sono i dati che si inserisono.
+
+ -------------------------------------------------------------------------------------------------------------------------------
+ 
+ LEZIONE 29/09
+ 
+ 
+LE SERVLET - sta sul suo sito 060_RequestDispatcher
+
+Il nostro server si chiam Tomcat ma ce ne sono altri.
+
+Il nostor è un server container quindo capisce servlet.
+
+una volta era statico il servlet. 
+
+secondo una serie di principi, vincoli architettonici (Roy filding nella sua tesi di dottorato).
+le api mettono in comunicazione mondi vari. 
+
+quando il client chiama risoònde una servlet. quando facciamo la rchiesta ci viene assegnato un id di sessione univoco. 
+
+servlet è una claase java con i suoi metodi.   
+
+RequestDispatcher me lo faccio dare dalla request
+
+(HIBERNATE) SPRING mette insieme tantissime librerie.
+
+CONVENCTION OVER CONFIGURATION.
+
+------
+
+inseriamo il titolo e facciamo trova. parte una chiamata ad un api (API TVMAZE)dove una volta tovata la serie ci ritorna genere, 
+rating, locandina e premendo su add lo aggiunge al nostro db. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+LEZIONE 02/10
+
+INSTALLARE SPRING
+
+Help - Eclipse Marketplace - Spring Tools 4 (aka spring ToolSuite 4) - installiamo e asciamo le robe di default (nel caso mettiamo trust selected).
+
+Voliamo un sistema client server. cioè un server aò centro e tanti client che gli ruotano intorno. Tutti i client vogliono accedere allo stesso server 
+solo che sono tutti diversi.
+Il mobile è fatto in maniera diversa dagli altri.
+Il server web si interfaccia con un altro server, cioè il server del database.
+80 porta di default del servizio web.
+
+Tomcat (che è un sofrtware) di default ha la 8080 come porta perchè fa servizi web.
+A MySQL invece gli da la porta 3306.
+Entrambi sullo stesso server localhost.
+
+Tomcat usa certi oggetti java in modo partiolare, cioè le servlet.
+HTTP ha 4 metodi overbi principali:
+- get
+- post
+- put
+- delete
+
+C'è ne osno altrima questi sono i prnicipali. Questi metodi sono usati per fare richieste al server.
+Un certo roy fielding ha concettualizzato rest cioè regole e principi che fanno restfull.
+Nel rest poi ci dice usa, per sostenere la tua richesta in maniera corretta, questi canali quindi in sostanza ci invita a fare il crud.
+Per fare create usa post.
+Per fare read usa get.
+Per fare update usa put.
+Per fare delte usa delete.
+
+Dovremmo usare l'approccio rest e usare i verbi http perchè quando abbiamo il problema di mosrtare uno stato a schermi diversi, invece di 
+rifarmi tutta la logica (dao e service) andiamo a cambiare solo la vista.
+
+Poi prevde che il dato che ti passo è in forma grezza xml, json ecc. Cioè deve essere capito sia dal client che dal server oerò possono esssere consideati anche oggetti.
+
+So ctruireuna mini web aplication con MVC (con le jsp) ma anche con javascript e json. 
+
+È basato sulle annotazioni. le clasis hanno dei superpoteri grazie alle annotazioni che non sono commenti ma sono funzionalità.
+
+Angular framework parte client
+spring framework parte sevrer 
+
+SPRINGBOOT è un inizializzatore di progetti spring. Mi auita ad agganciare i vari pezzi di spring. Con springboot possiam utiizzare dei moduli già pronti.
+Nel nostro applicativo agganciamo i moduli a seconda di come ci servono. 
+
+Poi ci da un inizializzatore ( anche se lo faccciamo direttamene su eclipse nel momento in cui creiamo un progetto). 
+
+Maven è un progetto di apachhe che fa il gestore (un po come npm in javascript).
+Maven aiuta a tenere traccia e scaricare le dipedenze. Ci aiuta a gestire le librerie. (in js usiamo npm)
+
+Spring accetta come linguaggi java kotlin e grooovy.
+
+La versione teniamo quella di default.
+
+GROPU: inizio del nome del file. Qui inseriamo ad esempio it.renzetti 
+ARTIFACT: qui ci va il nome del progetto. Ad esempio hello-spring  
+NAME: hello-spring
+PACKAGE: il.renzetti.hello-spring
+
+packaging mettiamo jar.
+
+Poi il progetto ha delle dipendenze e noi inizialmente nemettiamo 4. 
+
+- SPRING BOOT DEVTOOLS: è come il liveServerReload. Non mi serve runnre di nuovo il server. 
+- SPRING WEB: abbiamo tutte le librerie per fare un progetto web incluso tomcat. 
+- SPRING DATA JPA: evoluzione del jdbc. per lavorare con il databsse. 
+- MYSQL DRIVER: driver per MySQL.
+
+Quanod abbiamo finito di configurare il progetto facciamo genera. 
+Il progetto è fatto da src e pom.xml he serve per gestireil progetto (projec object model).
+Se apriamo il pom vediamo che sono riportate in xml tutte le cose che abbiamo scritto in precedenza. 
+
+In aggiunta (dentro pom) c'è sempre una cartella per fare test e debugging. Ci prepara già le cartelle per farlo e le librerie che servono per fare testing. 
+
+Il file pom è di tipo text perchè possiamo aggiungere e togliere robe, poi ci penserà spring ad aggungerle o meno. 
+
+Dentro src/main/java abbiamo tutto ciò che è java
+dentro src/main/resources abbiamo tutto ciò che non è java e soprattutto application properties.
+
+Dentro aplication properties andiamo a metttere le credenziali di accesso al db
+
+spring.datasource.url=jdbc:mysql://localhost:3306/jaita93
+spring.datasource.username=app_java
+spring.datasource.password=java_2023!
+
+queste tre righe servono per configurare l'accesso al db
+
+adesso che abbiamo l'accesso a db possiamo già far partire il progetto.
+Clicchiamo destro sul progetto, run as, Spring Boot App. 
+
+Tomcat started on port(s): 8080 sta a significare che il progetto è partito e sulla pagina html risponde alla porta 8080 (che possiamo cambiare)
+Se non scriviamo nulla e chiamiamo localhot:8080 ci esce una pagin di errore "Whitelabel Error Page" ma comunque il server è prtito.
+Un possibilità è quella di mettere un file html nella cartella static. Se poi nel browser chiamiamo localhost:8080/index.html ci esce quello scritto nel file.
+
+Poi proviamo a mettere un controller. Lo facciamo nella parte di java, nel package it.renzetti, in cui facciamo unsottopacchetto che chimiamo it.renzetti.controller
+
+ATT: tutti i pacchetti che facciamo dovrano essere sottopacchetti di it.renzetti altrimenti non funziona 
+
+In spring funziona tutto con le annotazioni. Quindi se alla classe MioController vogliamo dire che è un controller dobbiamo scrivere @Controller.
+Adesso spring sa che questa classe ha il ruolo di controller ed il controller è un controller MVC. 
+
+Abbiamo creato un metodo
+
+	public String home() {
+		return "provamiemanuele";
+	}
+	
+siccome questo è un controller vuol dire che nella cartella templates abbiamo un file html che si chiama provamiemanuele.html
+
+Ora per arrivare a provmamiemanuele sempre dentro il controller, prima del metodo, scriviamo @GetMapping("homepage")
+
+	@GetMapping("homepage")
+	public String home() {
+		return "provamiemanuele";
+	}
+	
+Dentro it.renzetti.controller andiamo a creare un'altra classe che si chiama MioRestController e siccome è un rest conroller 
+gli mettiamo l'annotazione @Restcontroller.
+Sempre in questa classe inseriamo un metodo che ritorna una stringa come json.
+
+Il punto focale di questa cosa è che perdistinguere i controller mettiamo i tag
+
+@Controller         è il controller MVC         parla in mvc
+@RestController     è il controller REST        parla in json
+
+su maven repository cerchiamo thymeleaf e andiamo a copiare questo:
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+
+E lo copiamo in pom.xml tra le dipendenze
+
+spring sa come deve essere fatto un controller MVC e un Rest Controller. 
+In particolare il rest controller a default parla in json. Qui la pagina html può essere anche in remoto
+Il controller è un controller MVC quindi prevede di avere la pagina html locale.
+	
+------------- appunti presi rivedendo il video (parte dopo la pausa)
+
+
+cliccando sul tasto in alto Boot Dashboard ci esce in basso e al suo interno vediamo tutti i progetti che stanno girando sul nostro server local
+
+per fare un commento in application properties si mette un # davanti la riga
+
+Sappiamo che in java dobbiamo fare come prima cosa il model.
+
+Il diagramma E-R lo troviamo nel mondo del db. 
+
+Nella tabella relazionale abbiamo solo gli id che si accoppiano tra gli id (chiave esterna) delle varie tabelle entità (es autore e libro sono le entità, e la tabella autore-libro
+è la relazione) In questo modo risparmiamo spazio nella tabella relazionale.
+
+In src/main/java, dentro il pacchetto it.renzetti creiamo un nuovo pacchetto.
+Tutto quello che fino ad ora abbiamo chiamato model qui lo chiamiamo entityes.
+La nostra entità è la canzone quindi faremo la clsse canzone. qui stiamo modellando la singola canzone. In questa classe andiamo ad inserire gli attributi
+che corrispondono alle colonne della tabella che sono anche nel db.
+Poi inseriamo anche getters e setter. NO IL COSTRUTTORE.
+
+Per far sapere a spring che questa non è una semplice classe , ma è una classe che rappresenta una tabella entità, andiamo ad inserire prima 
+della classe il tag 
+@Entity
+@Table(name="canzoni")    [ il db non fa distinzioni tra minuscolo e maiuscolo ]
+
+SE LA MIA TABELLA NON SI CHIAMA ESATTAMENTE CANZONE DEVO METTER PER FORZA IL TABLE NAME. SE INVECE LA MIA TABELLA SI CHIAMA ESATTAMENTE COME LA CLASSE NON DEVO METTERE
+PER FORZA IL TABLE NAME. SERVE PER FARE IL MATCH TRA NOME DELLA TABELLA E IL NOME DELL'OGGETTO.
+
+Poi dobbiamo dire una ultima cosa. dobbiamo dire all'id che quello è la chiave primaria con il tag @Id
+
+Sopra il model abbiamo il DAO.
+
+Creiamo quindi una cartella it.renzetti.repos in cui inseriam tutti i dao.
+Creiamo prima una interfaccia che sarà CanzoneDAO. Nel momento in cui andiamo a creare uesta interfccia facciamo add perche va ad estendere JpaRepository
+il quale fa tutto lui. Basta mettere tra le <> la classe da importare e il tipo di chiave primaria <Canzone, Integer>. Funziona già così.
+Non dobbiamo fare neanche l'implementazione dell'interfaccia.
+
+Una volta fatto ciò andiamo a fare il piano del services.
+
+Creiamo il pacchetto it.renzetti.services 
+Qui inseriamo:
+- una interfaccia (CanzoneService) in cui inseriamo due metodi:
+	- uno che ci da tutte le canzoni -> List<Canzone> getCanzoni() 
+	- uno che ci fa aggiungere una sola canzone -> Canzone addCanzone(Canzone c) non mettiamo void così ci ritorna la canzone e sappiamo che è stata inserita
+- una classe concreta (CanzoneServiceImpl) che implementa CanzoneService
+
+Prima cosa da fare è inserire il tag per dire che la classe è un service e lo facciamo con il tag @Service.
+
+I dati dal db li prende il dao quindi sempre dentro la classe CanzoneServiceImpl dobbiamo fare il collegamento al DAO e lo facciamo inserendo
+CanzoneDAO dao;
+Spring si basa sul concetto IOC (inversion of control - dependency injection) quello di cui ho bisogno ce lo da sprin quando serve per questo
+dobbiamo avere sempe il costruttore vuoto.
+Spring crea gli oggetti solo quando servono e lo facciamo mettendo l'annotazione @Autowired sopra CanzoneDAO dao;
+Quindi modifichiamo i metodi implementati
+	@Override
+	public List<Canzone> getCanzoni() {
+		return dao.findAll();
+	}
+
+	@Override
+	public Canzone addCanzone(Canzone c) {
+		return dao.save(c);
+	}
+	
+	
+NB: le operazini del CRUD non dobbiamo scriverlo a mano ma ce le da già hibernate. Spring mette insieme tanissime cose (jar)
+	
+Ora in MioControllerRest facciamo la stessa cosa che abbiamo fatto nel service. Nel service ci siamo collegati al DAO, qui invece ci colleghiamo la service.
+
+CanzoneService service; e anche a questo gli mettiamo @Autwired
+
+Poi abbiamo inserito anche un altro metodo
+
+	@GetMapping("api/canzoni")
+	public List<Canzone> getCanzoni() {
+		return service.getCanzoni();
+	}
+	
+Poi abbiamo inserito anche un metodo di post mapping. Sempre in api/canzoni
+
+	@PostMapping("api/canzoni")
+	public Canzone addCanzone(@RequestBody Canzone c) {
+		return service.addCanzone(c);
+	}
+	
+Inseriamo @RequestBody prima di Canzone c perchè gli stiamo dicendo che nel corpo della richiesta gli entra un oggetto fatto come una canzone
+
+Possiamo passare sia un singolo oggetto sia una lista di oggtti, ovvro una cllection di canzoni, e fare un endpoint che si prende un arraylist e oggetto per oggetto 
+e lo inserisce nel db.
+
+Quindi abbiamo fatto un approccio rest sia via get, per ottenere, sia via post, per scrivere.
+	
+Poi abbiamo inserito nell application.properties questa roba nuova -> spring.jpa.show-sql=true 
+
+Quando si tratta di creare una nuova canzone è come se la facessimo esistere prima in java, perche creiamo un oggetto, e poi la vogliamo far persistere.
+Però siccome nel db abbiamo dato auto increment è la tabella che vule comandare la creazione del nuovo record.
+Quindi, nella classe Canzone, dopo @Id dobbamo inserire @GeneratedValue(strategy = generationType.IDENTITY)
+Questi due tag LI METTEREMO SEMPRE SU UNA CHIAVE PRIMARIA PERCHE'
+- @Id dice che quella è la chiave primaria
+- @GeneratedValue(strategy = generationType.IDENTITY) dice che se viene creato un nuovo oggetto di tipo canzone, prima che diventi un record canzone, 
+sappi che l'Id se lo gestisce il db
+
+------------------ Appunti presi durante le lezione dopo la pausa
+
+entities sarebbe il model riferito ad una tabella di database (una tabella entità).
+La nostra entità è la canzone.
+
+per far sapere a spring che quetsta non è una semplice classe(la classe Canzone), ma è una classe che rappresenta la tabella entità,
+prima della classe scrivamo @Entity e sotto @Table(name  = "canzoni")
+Se la mia tabella non si chiama esattamente canzoni devo inserire il nome a table altrimenti posso eitare. 
+Serve per fare il match tra la classe se la tabella.
+
+Poi dobbiamo dire che l'id è la chiave primaria e si fa mettendo sopra  id @Id
+
+Dentro la cratella repos facciamo l'interfaccia di canzone che sarà CanzoneDAO.
+JPSRepository fa tutto lui.
+ 
+Poi facciamo il services. 
+Di solito abbiamo interfaccia e classe concreta. 
+Creiamo CanzoneService, che è una interfaccia, in cui mettiamo due metodi, uno che da tutte le canzoni e poi uno che aggiunge una canzone.
+
+Poi creiamo una classe cpncreta che implementa la interfaccia.
+
+Siccome è un service, DOBBIAMO DIRGLIELO A SPRING E LO FACCIAMO INSERENDO @Service SOPRA LA CLASSE.
+
+spring ha bisogno di avere un construttore vuoto. crea oggetti quando serve a lui da solo.
+Per questo sopra CanzoneDAO dao; inseriamo @Autowired cioè collegamto automatico alll'oggetto. 
+
+Nel service ci siamo collegati al DAO, ora in MioRestController ci colleghiamo al service.
+Scriviamo CanzoneService service; e sopra inseriam @AutoWired.
+
+@Id dice cheè chiave primaria
+@GeneratedValue(stratety = GenerationType.IDENTITY) questo dice che l'id lo gestisce il db come creiamo qualcosa di nuovo
+
+----- 14-18-----
+
+SPRING - github-maboglia-corsojava-blob-master-appunti-069springframweork
+
+è un framewwrk di java. 
+
+IoC e DI viaggiano insmieme. 
+la maggior parte del controllo delle attivià non è più in mano a noi ma è in mano al framework.
+DI è come dire che un oggetto ne contine un altro e questa cosa èiò essere molto forte o meno forte.
+
+supporto allapersistenza del dato dato che sa che usiamo un db.
+
+si basa sul fatto che faremo cose standard (AOP) convenction over confguration
+
+Spring is basa sulle annotazioni.
+C'èun modulo di spring tra gli altir che serve a lanciare preparare prpgetto spring e si chiama springboot che ci da lo start ai progetti.
+
+data-jpa (java persistence api)
+data-jdbc sono più vecchi
+
+Maven ha scaricato tutte le librerie che servono per fare web
+
+Parte core che serve a far funzionare tutti i moduli e poi a secondoa di ciò che ci serve inseriamo i moduli. 
+
+Quando scrivimamo @Autowired fa in automatico la independence injection
+
+Spring MVC è il modulo spring che si occupa di mvc. 
+
+Java riconosce file di testo con estensione properties. 
+
+Dentro spring c'è Hibernate. È un framework per db. è integrato dentro spring. 
+
+Spring ha una casa. https://spring.io
+
+Group e artifact servono per fare il progetto. Il package name deve essere il mio dominio al contrario.
+
+Name: Hello-spting
+Type: Maven
+Packaging: jar
+Java version: 17
+language: java 
+Grou: it.renzetti
+Artifact: Hello-spring
+Package: it.renzetti
+
+Dipendenze:
+1- MySQL Driver
+2- DevTool
+3- JPA
+4- Spring Web
+5- Thymeleaf
+
+Siccome è legato al db, anche solo per farlo partire dobbiamo collegarlo e per farlo inseriamo le cose in application.properties
+spring.datasource.url=jdbc:mysql://localhost:3306/jaita93
+spring.datasource.username=app_java
+spring.datasource.password=java_2023!
+
+Poi pr esempio per farci momstrare il codice sql quando viene eseguito scriviamo
+spring.jpa.show-sql=true
+
+La dashboard mi fa vedere il mio progetto.
+
+Per farmi mostrare qualcosa preparo un controller. INvece di partire dal model siamo partiti dal controller.
+Diventa un controller la casse MVCController solo se sopra ci scriviamo @Controller
+
+con il GetMapping quello gli passiamo nelle tonde fa riferimento a ciò che scriveremo dopo /
+invece ciò che viene dopo il return ci dice a quale pagine ci reindirizza.
+
+Nella cartella static ci mettiamo risorse statiche. Ad esemio css e js.
+
+La classe model si chiama entities cioè i model che fanno riferimento ad una tabella.
+Nella classe Classe inseriamo @Entity e @Table(name="canzoni")
+
+Creiamo it.boglia
+	Creiamo i sottopaccchetti:
+	entities
+		Serie.java
+	repos
+	services
+	integration
+	presentation
+	
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+LEZIONE 04/10
+
+
+lo stack che dobbiamo costuire:
+
+@Entity costruiamo una enttà, ad esempio uno studente. Dobbiamo costuire anche una tabella studenti. 
+
+@Repository Sopra la entity appoggiamo il DAO.
+
+@Service Qui metteremo lac lasse StudenteService
+
+@Controller Qui avremo studente controlller. Il controll base ha una annotazione estesa che lo specializza  diventa rest controller (xml o json).
+										  
+Nel db oltre Studenti abbiamo anche Corsi. Quindi abbiamo anche un CorsoDAO ma non per forza dobbamo avere un CorsoService. 
+Man mano che saliamo abbiamo meno cose quindi al posto di studnte service e corsoservice possiam aver un unico service che chimiamo ScuolaService. 
+
+CorsoDAO (interfaccia) extends JPSRepo sappiamo che a sua volta JPSRepo estende CrudRepository
+
+i controller mvc stanno in presentation
+
+i controller rest stanno in Integration
+
+Oltre ad avere tomcat interno possiam usare H2 che è un database incorporato. 
+
+Si costruiscono gli applicativi che si chiamano stand alone.
+
+----------
+(Progetto lombock ci permettte di non scrivere tutti getters e setters grazie alle notazioni con la chiocciola)
+
+     ARCHITETTURA MULTI - TIER
+
+Progetto studenti. Dove nella creazione inseriamo le dipendenze:
+
+	- MySQL Driver
+	- DevTool
+	- JPA
+	- Spring Web
+	- Thymeleaf
+
+Abbiamo il pacchetto it.renzetti dentro il quale inseriamo i sotto pacchetti
+
+	Creiamo i sottopaccchetti:
+	• it.renzetti.entities
+	
+		Dentro questo pacchetto creiamo la Classe Studente.
+	
+		Studente.java
+		
+		Gli diciamo che è una entità con 
+		@Entity
+		poi diamo il nome alla tablla con
+		@Table(name= "studenti")
+		
+		Dentro la classe poi inseriamo gli attirbuti:
+		
+		- private int id al quale diciamo che è un id primary key auto increment e lo facciamo con
+		@Id
+		@GenerateValue(strategy = GenerationType.IDENTTITY)
+		
+		- privat String nome;
+		- provate String cognome;
+		
+		poi inseriamo getter, setters e il costruttore VUOTO.
+		
+		
+	• it.renzetti.repos
+	
+		Qui creiamo una interfaccia  StudeneDAO che estende JpaRepository<Studente, Integer>
+		
+		e gli diciamo che è una reopsitory con @Repository
+	
+	• it.renzetti.services
+	
+		Qui creiamo una interfaccia che chiamiamo StudenteSevice
+		
+		Nella quale inseriamo due metodi:
+		
+		List<Studente> getStudenti();
+		Studente addStudente(Studente s);
+		
+		Poi creiamo la classe concreta (StudenteServiceImpl) che implementa l'interfaccia (StudenteService)
+		
+		Qui in questa classe dobbiamo inserire @Service 
+		
+		E inoltre dobbiamo dichiaarre il private StudenteDAO dao; al quale diamo @Autowired con il quale spring crea l'oggtto
+		
+		Poi abbiamo anche due metodi i quali usa il dao e sono quelli che abiamo inserito in precedenza nell'interfaccia.
+	
+	• it.renzetti.integration
+	
+		Qui facciamo la classe StudenteRestCtrl al quale mettiamo l'annotazione @Restcontroller e il modo per arrivarci	tramite @RequestMapping("api")
+		
+		@AutoWired
+		StudenteService service; (stessa cosa del dao di prima)
+		
+		Poi abbiamo i due metodi che possiamo usarli grazie al service che sono
+			- getstudenti 
+			- addStudente (qui inseriamo RequestBody)
+			
+	• it.renzetti.presentation
+	
+		Qui invece se voglimo fare un controllermvc
+		
+		Creiamo StudentiCtrl.java
+		
+		inseriamo sempre 
+		@Controller
+		@RequestMapping("")
+
+		dentro la classe inseriamo
+		
+		@AutoWired
+		StudenteService service;
+		
+		e i due metodi che ci portano in home, studenti e corsi
+		
+		@GetMapping("")
+		public String home() {
+			return "home";
+		}
+		
+		@GetMapping("studenti")
+		public String studenti(Model m) {
+			m.addAttribute("tuttislistudenti", service.getStudenti()); qui aggiungo alla vista il model. ***** (vedi sotto)
+			return "studenti";
+		}
+		
+		@PostMapping("studenti")
+		public String addStudente(Studente s) {
+			service.addStudente(s);
+			...
+		}
+		
+		@GetMapping("corsi")
+		public String corsi() {
+			return "corsi";
+		}
+		
+		
+	Poi in templates inseriamo i due file html
+		- home
+		- studenti
+		- corsi
+
+Poi per testre il mio aplicativo abbiamo la cartella src/test/java in cui in automatico abbiamouna classe chiamata StudentiapplicationTests.java
+
+inseriamo
+
+@AutoWired
+private studenteservice service;
+
+e dentro il contextLoad inseriamo
+
+Studente s  = new Studente();
+s.setNome("Mauro");
+s.setCognome("bogliaccino");
+
+service.addStudente(s);
+
+
+
+poi facciamo 
+
+@Test
+void showStudents() {
+syso (service.getStudenti().get(0).getcognome());
+}
+
+Poi clicchiamo destro sulla classe, facciamo run as JUnit test possiamo fare anche maven test.
+
+
+------- *****
+
+nel file html in alto nel tag html inseriamo <html xmlns:th="http://www.thymeleaf.org"> 
+questa serve per dire che da ora in poi userò th l cui istruzioni che do saranno in quel link. Cioè lasintassi thymeleaf
+
+th:each="s : ${tutiglistudenti}" serve per dire di fare le righe uguli per tutti gli studenti presenti
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+LEZIONE 05/10
+
+Si può fare un mix tra MVC e REST. Spesso si usa quando si ha un selettore condizionale.
+
+Quando inseriamo Model in Get Mapping dobbiamo importare: org.springfreamework.ui
+
+- DERIVED QUERY: le facciamo nel DAO e iniziano con findby 
+
+- QUERY CUSTOM query che inventamo noi @Query(nativeQuery = true, name = "select ....")
+
+operazione di trasformare una stringa in oggetto e viceversa (serializabile)
+
+DTO : data transfert object. Non dovremmo far sapere come è il nostro model. È un ogetto intermedio di trasferimento.
+ 
+--------------------------------------------------------------------------------------------------------------------------------
+
+LEZIONE 06/10
+
+---------------------------------------------------------------------------------------------------------------------
+
+LEZIONE 09/10
+
+Java parte dal tipop di dato.
+Parliamo dipuù dei reference, classi custom o delle librerie di java.
+accanto alle classi abbiamo ad esempio reflection, ritorsione che non sono importantissimi però. 
+Molto importante invece è la programmazione funzionale.
+Le interfaccesono una via per il polimorfismo in java.
+l'uso della progrmmazione funinale piò aiutare moltissimo anche con spring e mi permette anche di evitare problemi
+tra java e il db. 
+
+Abbiamo un db, nel quale abbiamo diverse tab es. canzoni che ha un titolo, cantante e genere. oppure tab regione
+in cui abbiamo regione, provincia e popolazione. 
+Quando dobbiamo estrarre i dati nel moio mondo java mi devo modellare (quindi model) il dato. Nel mondo java faccio 
+corrispondere, data una tabella di canzoni, per me ogni oggetto di tipo canzone nel mio contenitore di canzoni. 
+Oltre a canzone avrò anche una lisra di canzoni ed è questa che mi rappresenta la tabella e non la singola canzone.
+Scatola di canzoni, tutti oggetti di tipo canzoni. (stessa cosa con prvince).
+Uncantante oppure una regione, non sono una canone e ne una provincia e sono in relazione. NEl mondo java possiamo realizzare
+il mondo del db come degli oggetti, quindi oltre alla canzone possiamo avere il cantante e oltre alla provincia possiamo avere la regione. 
+Possiamo fare scatole conteniori di oggetti di questo tipo che poi possiamo organizzare come preferiamo. 
+
+-----
+
+RECAP COLLEZIONI
+
+Classe ProvaCollezioni
+ Qui ci inseriamo il main.
+ 
+ Parliamo delle liste. 
+ List<String> regioni = new ArrayList <>(); // qui ci teniamo una porta aperta per fare LinkedList<>() che è un'altra classe rispetto ad ArrayList.
+ ArrayList poò avere duplicati ed è senza colllegamento tra un elemento ed il successivo o precedente. 
+ Una LinkedLit invece è una specie di coda. Implmenta sia le liste sia le code. Ed è un tipo di coda DoubleEnded cioè è una
+ pila fifo lifo. Deque estende queue, allora ha come vantaggio che gli elemmenti siano collegati. Quindi se devo toliere un elemento dalla
+ lista è più semplice riposizionare gli altri elementi. 
+ Se non abbiamo necessità di togliere elementi dalla lista possiamo usare un arraylist normale perchè è più veloce.
+ Quest è un aspetto del polimorfismo. Abbiamo due oggetti dntrambi di tipo list.
+ Non dobbiamo avere per forza delle classi concrete ma posso fare il ragionamento anche solo con le interfaccie che comunque sono un tipo.
+ Quindi spesso mettiamo List e non ArrayList perche cosi poi possiamo mettere sia new arraylit che linkedlist oppure new Vector.
+ 
+ Set<String> regioniUniche = new HashSet<>(); // potremmo passargli un new TreeSet<>(); cioè collezioni che escludono i duplicati, non garantiscono un ordimanento. 
+ La lista invece, con un accesso posizionale, rispettano l'ordinamento.
+ Il treeSet però accetta solo elementi ordinabili. Possiamo mettere solo oggetti che implementano l'interfaccia comparable. 
+ Comparable non è una tipologia di oggetto. Qualsiasi oggetto può essere comparable con un altro oggetto. Possiamo confrontare un oggetot con un 
+ oggetto dello stesso tipo o con un oggetto di un altro tipo. 
+
+ Poi dopo ci sono le Queue<String> regioniCoda = PriorityQueue<>();  // estesa da una sotto interfaccia, , a cui appartiene una LinkedList<>(). 
+
+ Poi abbiamo una collezione doppia equesta è la mappa. COllezione bidimensionale perche nelle <> ha due tipi di oggetti (key, value).
+ La chiave può essere una string, comunque deve essere un oggetto.
+ Map<String, String> regioniMap = new HashMap();
+ La map ha il valore che si muove come una collection. Collection è la sovrainterfaccia delle tre precedenti. (Collection, set, queue)
+ Come valore abbiamo una collection quindi gli elementi di possono ripetere. 
+ Ad HashMap non interessa l'ordinamento. Perche in base alla chiave ci ritorna il valore.
+ 
+ Se ci interessa l'ordinamento di un valore useremo una TreeMap<>(); al quale però dobbiamo passare oggetti comparabili.(implements Comparable)
+ 
+ PROGRAMMAZIONE FUNZIONALE:
+ Disponibile da java 8
+ si basa sul considerare tutto come funzioni.
+ 
+Utilizza le interfacce funzionali. 
+- predicate come filtr
+- consumer quandoc consumiamo un flusso
+ 
+ 
+ Ci facilita la cosa lavorando con le collezioni. 
+ 
+ List.of è un metodo che ci permette di costruire una lista da un numero arbitrario di un certo numero di oggetti di un certo tipo. 
+ Questo metodo ti fa una list da questi elementi. Non è detto che fa un arraylist o linked list o vector.
+ Fa una list che però è unainterfaccia. Se voglio farla a manina devo fare una arraylist, vector o linked.
+ List.of è solo un tramite per aggiungere oggetti a qualcosa che invece è concreto. 
+ 
+ :: method reference mi permette di scrivere meno codice. 
+
+
+Ciao a tutti buona pranzo alla prossima 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

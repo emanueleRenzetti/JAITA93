@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	 <h1>Libri</h1>
+
+    <table id="tabella">
+        <tr>
+            <th>Id</th>
+            <th>Titolo</th>
+            <th>Prezzo</th>
+            <th>Pagine</th>
+        </tr>
+    </table>
+
+    <script>
+
+        const TABELLA = document.getElementById('tabella');
+        const URL = 'http://localhost:8080/Libri/api/libri';
+
+        fetch(URL)
+            .then(res => res.json())
+            .then(res => {
+
+                for (const libro of res) {
+                    
+                    const TR = document.createElement('tr')
+                    const TD1 = document.createElement('td')
+                    TD1.textContent = libro.id
+                    const TD2 = document.createElement('td')
+                    TD2.textContent = libro.titolo
+                    const TD3 = document.createElement('td')
+                    TD3.textContent = libro.prezzo
+                    const TD4 = document.createElement('td')
+                    TD4.textContent = libro.pagine
+
+                    TR.append(TD1, TD2, TD3, TD4)
+
+                    TABELLA.append(TR)
+                }
+            })
+            
+    </script>
+
+</body>
+</html>
